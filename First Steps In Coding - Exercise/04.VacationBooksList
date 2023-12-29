@@ -1,0 +1,21 @@
+using System;
+
+namespace _04.VacationBooksList
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //input
+            int pages = int.Parse(Console.ReadLine());
+            int readPadegForHour = int.Parse(Console.ReadLine());   
+            int days = int.Parse(Console.ReadLine());
+            //calculation
+            int hoursForRead = pages / readPadegForHour;
+            int daysForRead = hoursForRead / days;
+            //print
+
+            Console.WriteLine(daysForRead);
+        }
+    }
+}

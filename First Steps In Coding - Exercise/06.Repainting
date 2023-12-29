@@ -1,0 +1,37 @@
+using System;
+
+namespace _06.Repainting
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //•	Предпазен найлон -1.50 лв.за кв. метър
+            //•	Боя - 14.50 лв.за литър
+            //•	Разредител за боя - 5.00 лв.за литър
+            //1.Необходимо количество найлон(в кв.м.) -цяло число в интервала[1... 100]
+            //2.Необходимо количество боя(в литри) -цяло число в интервала[1…100]
+            //3.Количество разредител(в литри) - цяло число в интервала[1…30]
+            //4.Часовете, за които майсторите ще свършат работата -цяло число в интервала[1…9]
+            double priceForNylon = 1.5;
+            double priceForPaint = 14.5;
+            double priceForThinner = 5;
+            double priceForBags = .4;
+
+            //input
+            int nylon = int.Parse(Console.ReadLine());
+            int paint = int.Parse(Console.ReadLine());
+            int thinner = int.Parse(Console.ReadLine());
+            int hours = int.Parse(Console.ReadLine());
+            //calculation
+            double sumForNylon = (nylon + 2) * priceForNylon;
+            double sumForPaint = (paint * 1.1) * priceForPaint;
+            double sumForThinner = thinner * priceForThinner;
+            double sumForMaterials = sumForNylon + sumForPaint+ sumForThinner+ priceForBags;
+            double priceForMasters = sumForMaterials * .3 * hours;
+            double finalPrice = sumForMaterials + priceForMasters;
+
+            Console.WriteLine(finalPrice);
+        }
+    }
+}

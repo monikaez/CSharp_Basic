@@ -1,0 +1,40 @@
+using System;
+
+namespace _07.FoodDelivery
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //•	Пилешко меню –  10.35 лв.
+            //•	Меню с риба – 12.40 лв.
+            //•	Вегетарианско меню  – 8.15 лв.
+
+            //•	Брой пилешки менюта – цяло число в интервала[0 … 99]
+            //•	Брой менюта с риба – цяло число в интервала[0 … 99]
+            //•	Брой вегетариански менюта – цяло число в интервала[0 … 99]
+
+            double priceForChickenMenu = 10.35;
+            double priceForFishMenu = 12.40;
+            double priceForVeganMenu = 8.15;
+            double priceForDelivery = 2.5;
+
+
+            //input
+            int numberOfChickenMenu = int.Parse(Console.ReadLine());
+            int numberOfFishMenu = int.Parse(Console.ReadLine());   
+            int numberOfVeganMenu = int.Parse(Console.ReadLine());
+            //calculation
+            double chickenMenu = priceForChickenMenu * numberOfChickenMenu;
+            double fishMenu = priceForFishMenu * numberOfFishMenu;
+            double veganMenu = priceForVeganMenu * numberOfVeganMenu;
+            double fullMenu = chickenMenu+fishMenu+veganMenu;
+            double priceForDesert = fullMenu * .2;
+
+            double finalPrice = fullMenu + priceForDesert + priceForDelivery;
+
+            //output
+            Console.WriteLine(finalPrice);
+        }
+    }
+}
