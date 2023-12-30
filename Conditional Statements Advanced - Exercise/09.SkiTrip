@@ -1,0 +1,85 @@
+using System;
+
+namespace _09.SkiTrip
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+    //       	"room for one person" – 18.00 лв за нощувка
+    //	"apartment" – 25.00 лв за нощувка
+    //	"president apartment" – 35.00 лв за нощувка
+    //Според броят на дните, в които ще остане в хотела(пример: 11 дни = 10 нощувки) и 
+    // видът на помещението, което ще избере, той може да ползва различно намаление.
+    //Намаленията са както следва:
+    //вид помещение        по - малко от 10 дни        между 10 и 15 дни           повече от 15 дни
+    //room for one person не ползва намаление         не ползва намаление          не ползва намаление
+    //apartment            30 % от крайната цена      35 % от крайната цена        50 % от крайната цена
+    //president apartment    10 % от крайната цена    15 % от крайната цена        20 % от крайната цена
+
+            int dayTrip = int.Parse(Console.ReadLine());
+            string typeRoom = Console.ReadLine();
+            string grade = Console.ReadLine();
+
+            double totalPrice = 0;
+
+            switch (typeRoom)
+            {
+                case("room for one person"):
+                    dayTrip -= 1;
+                    totalPrice = dayTrip * 18;
+                            break;
+                case ("apartment"):
+                    dayTrip -= 1;
+                    if(dayTrip < 10)
+                    {
+                        double priceTwo = dayTrip * 25;
+                        totalPrice = priceTwo - (priceTwo * 0.3);
+
+                    }
+                    else if(dayTrip >=10 && dayTrip <= 15)
+                    {
+                        double priceTwo = dayTrip * 25;
+                        totalPrice = priceTwo - (priceTwo * 0.35);
+                    }
+                    else if(dayTrip > 15)
+                    {
+                        double priceTwo = dayTrip * 25;
+                        totalPrice = priceTwo - (priceTwo * 0.5);
+                    }
+
+                    break;
+                case ("president apartment"):
+                    dayTrip -= 1;
+                    if (dayTrip < 10)
+                    {
+                        double priceTwo = dayTrip * 35;
+                        totalPrice = priceTwo - (priceTwo * 0.1);
+
+                    }
+                    else if (dayTrip >= 10 && dayTrip <= 15)
+                    {
+                        double priceTwo = dayTrip * 35;
+                        totalPrice = priceTwo - (priceTwo * 0.15);
+                    }
+                    else if (dayTrip > 15)
+                    {
+                        double priceTwo = dayTrip * 35;
+                        totalPrice = priceTwo - (priceTwo * 0.2);
+                    }
+                    break;
+
+            }
+            if (grade == "positive")
+            {
+                totalPrice = totalPrice + (0.25 * totalPrice);
+            }
+            else if (grade == "negative")
+            {
+                totalPrice = totalPrice - (0.1 * totalPrice);
+            }
+
+            Console.WriteLine($"{totalPrice:f2}");
+        }
+    }
+}

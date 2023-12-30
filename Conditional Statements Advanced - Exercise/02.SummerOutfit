@@ -1,0 +1,84 @@
+using System;
+
+namespace _02.SummerOutfit
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Лято е с много променливо време и Виктор има нужда от вашата помощ.
+            //    Напишете програма която спрямо времето от денонощието и градусите 
+            //    да препоръча на Виктор какви дрехи да си облече. 
+            //    Вашия приятел има различни планове за всеки етап от деня, 
+            //    които изискват и различен външен вид, тях може да видите от таблицата.
+            //От конзолата се четат точно два реда:
+            //•	Градусите - цяло число в интервала[10…42]
+            //•	Текст, време от денонощието - с възможности - "Morning", "Afternoon", "Evening"
+              int tempetarure = int.Parse(Console.ReadLine());
+            string timeOfDay = Console.ReadLine();
+            string outfit = String.Empty;
+            string shoes = String.Empty;
+            //10 <= градуси <= 18
+            //18 < градуси <= 24
+            //градуси >= 25
+            if (tempetarure >= 10 && tempetarure <= 18)
+            {
+                switch (timeOfDay)
+                {
+                    case "Morning":
+                        outfit = "Sweatshirt";
+                        shoes = "Sneakers";
+                        break;
+                    case "Afternoon":
+                        outfit = "Shirt";
+                        shoes = "Moccasins";
+                        break;
+                    case "Evening":
+                        outfit = "Shirt";
+                        shoes = "Moccasins";
+                        break;
+                }
+            }
+            else if(tempetarure > 18 && tempetarure <= 24)
+            {
+                switch (timeOfDay)
+                {
+                    case "Morning":
+                        outfit = "Shirt";
+                        shoes = "Moccasins";
+                        break;
+                    case "Afternoon":
+                        outfit = "T-Shirt";
+                        shoes = "Sandals";
+                        break;
+                    case "Evening":
+                        outfit = "Shirt";
+                        shoes = "Moccasins";
+                        break;
+                }
+
+            }
+            else if(tempetarure >= 25)
+            {
+                switch (timeOfDay)
+                {
+                    case "Morning":
+                        outfit = "T-Shirt";
+                        shoes = "Sandals";
+                        break;
+                    case "Afternoon":
+                        outfit = "Swim Suit";
+                        shoes = "Barefoot";
+                        break;
+                    case "Evening":
+                        outfit = "Shirt";
+                        shoes = "Moccasins";
+                        break;
+                }
+
+            }
+            Console.WriteLine($"It's {tempetarure} degrees, get your {outfit} and {shoes}.");
+
+        }
+    }
+}

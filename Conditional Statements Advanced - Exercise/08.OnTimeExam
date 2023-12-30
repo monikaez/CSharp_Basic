@@ -1,0 +1,80 @@
+using System;
+
+namespace _08.OnTimeExam
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Вход
+            //От конзолата се четат 4 цели числа(по едно на ред), въведени от потребителя:
+            //•	Първият ред съдържа час на изпита – цяло число от 0 до 23.
+            //•	Вторият ред съдържа минута на изпита – цяло число от 0 до 59.
+            //•	Третият ред съдържа час на пристигане – цяло число от 0 до 23.
+            //•	Четвъртият ред съдържа минута на пристигане – цяло число от 0 до 59.
+            //Изход
+            //На първият ред отпечатайте:
+            //•	“Late”, ако студентът пристига по-късно от часа на изпита.
+            //•	“On time”, ако студентът пристига точно в часа на изпита или до 30 минути по-рано.
+            //•	“Early”, ако студентът пристига повече от 30 минути преди часа на изпита.
+            //Ако студентът пристига с поне минута разлика от часа на изпита, отпечатайте на следващия ред:
+            //•	
+            //“mm minutes after the start” за закъснение под час.
+            //•	“hh: mm hours after the start” за закъснение от 1 час или повече.
+            //    Минутите винаги печатайте с 2 цифри, например “1:03”.
+
+            int examHour =int.Parse(Console.ReadLine());
+            int examMinutes =int.Parse(Console.ReadLine());
+            int arriveHour = int.Parse(Console.ReadLine());
+            int arriveMinutes = int.Parse(Console.ReadLine());
+
+            int examSumInMinutes = examHour * 60 + examMinutes;
+            int arriveSumInMinutes = arriveHour * 60 + arriveMinutes;
+            //Счита се, че студентът е дошъл навреме, ако е пристигнал в часа на изпита 
+            //    или до половин час преди това. 
+            //    Ако е пристигнал по-рано повече от 30 минути, той е подранил.
+            //    Ако е дошъл след часа на изпита, той е закъснял.
+            //    Напишете програма, която прочита време на изпит и време на пристигане
+            //    и отпечатва дали студентът е дошъл навреме, дали е подранил или е закъснял
+            //    и с колко часа или минути е подранил или закъснял.
+
+            if(arriveSumInMinutes > examSumInMinutes)
+            {
+                Console.WriteLine("Late");
+                if (arriveSumInMinutes - examSumInMinutes < 60)
+                {
+                    Console.WriteLine($"{arriveSumInMinutes - examSumInMinutes} minutes after the start");
+                }
+                else
+                {
+                    int hours = (arriveSumInMinutes - examSumInMinutes) / 60;
+                    int minutes = (arriveSumInMinutes - examSumInMinutes) % 60;
+                    Console.WriteLine($"{hours}:{minutes:D2} hours after the start");
+                }
+            }
+            else if(arriveSumInMinutes == examSumInMinutes || examSumInMinutes - arriveSumInMinutes <= 30)
+            {
+                Console.WriteLine("On time");
+                if (examSumInMinutes - arriveSumInMinutes != 0)
+                {
+                    Console.WriteLine($"{examSumInMinutes - arriveSumInMinutes} minutes before the start"); 
+                }
+
+            }
+            else if (examSumInMinutes - arriveSumInMinutes > 30)
+            {
+                Console.WriteLine("Early");
+                if (Math.Abs(arriveSumInMinutes - examSumInMinutes) < 60)
+                {
+                    Console.WriteLine($"{examSumInMinutes - arriveSumInMinutes} minutes before the start");
+                }
+                else
+                {
+                    int hours = (examSumInMinutes - arriveSumInMinutes) / 60;
+                    int minutes = (examSumInMinutes - arriveSumInMinutes) % 60;
+                    Console.WriteLine($"{hours}:{minutes:D2} hours before the start");
+                }
+            }
+        }
+    }
+}
