@@ -1,0 +1,50 @@
+using System;
+
+namespace _02.ExamPreparation
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //Напишете програма, в която Марин решава задачи от изпити докато не получи съобщение "Enough" от лектора си.
+            //При всяка решена задача той получава оценка.Програмата трябва да приключи прочитането
+            //    на данни при команда "Enough" или ако Марин получи определения брой незадоволителни оценки.
+            //Незадоволителна е всяка оценка, която е по-малка или равна на 4.
+            int badGrades = int.Parse(Console.ReadLine());
+            double sum = 0;
+            int counter = 0;
+            int badGradeCounter = 0;
+            string lastProblem = string.Empty;
+
+            //input
+            string nameOfProblem = Console.ReadLine();
+
+            while(nameOfProblem!= "Enough")
+            {
+                int grade = int.Parse(Console.ReadLine());
+                lastProblem = nameOfProblem;
+                if (grade <= 4)
+                {
+                    badGradeCounter++;
+                    if(badGradeCounter == badGrades)
+                    {
+                        Console.WriteLine($"You need a break, {badGradeCounter} poor grades.");
+                        break;
+                    }
+                   
+                } 
+                sum += grade;
+                counter++;
+                nameOfProblem = Console.ReadLine();
+            } 
+             double averageScore = sum / counter;
+            if (badGradeCounter < badGrades)
+            {
+                Console.WriteLine($"Average score: {averageScore:f2}");
+                Console.WriteLine($"Number of problems: {counter}");
+               Console.WriteLine($"Last problem: {lastProblem}");
+                  
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+using System;
+
+namespace _03.Vacation
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+      // Джеси е решила да събира пари за екскурзия и иска от вас да ѝ помогнете 
+      //да разбере дали ще успее да събере необходимата сума.
+      //  Тя спестява или харчи част от парите си всеки ден. 
+      //  Ако иска да похарчи повече от наличните си пари, то тя ще похарчи колкото има и ще ѝ останат 0 лева.
+        //input
+
+        //Пари нужни за екскурзията -реално число в интервала[1.00...25000.00]
+        double tripMoney = double.Parse(Console.ReadLine());
+            //Налични пари -реално число в интервала[0.00...25000.00]
+            double totalMoney = double.Parse(Console.ReadLine());
+            int dayCounter = 0;
+            int daySpendCounter = 0;
+            
+            while (true)
+            {//След това многократно се четат по два реда:
+             //Вид действие – текст с възможности "spend" и "save"
+             //Сумата, която ще спести / похарчи - реално число в интервала[0.01… 25000.00]
+                string command = Console.ReadLine();
+                double currentMoney = double.Parse(Console.ReadLine());
+                dayCounter++;
+                if(command== "spend")
+                {
+                    daySpendCounter++;
+                    totalMoney -= currentMoney;
+                    if(totalMoney < 0)
+                    {
+                        totalMoney = 0;
+                    }
+                    if(daySpendCounter == 5)
+                    {//Ако 5 последователни дни Джеси само харчи, на конзолата да се изпише:
+                     // "You can't save the money."
+                     //"{Общ брой изминали дни}"
+                        Console.WriteLine("You can't save the money.");
+                        Console.WriteLine($"{dayCounter}");
+                        break;
+                    }
+                }
+                else if (command == "save")
+                {
+                    daySpendCounter = 0;
+                    totalMoney += currentMoney;
+                    if (totalMoney >= tripMoney) 
+                    { 
+                        //Ако Джеси събере парите за почивката на конзолата се изписва:
+                    Console.WriteLine($"You saved the money for {dayCounter} days.");
+                    break;
+                    }
+                  
+
+                }
+            }
+
+
+        }
+    }
+}
